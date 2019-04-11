@@ -1,9 +1,11 @@
 from Node import *
 import numpy as np
+import ShortestPath
 
 lst_node = []
 MAX_DIST = 100000
 #dist = np.full((1000, 1000), MAX_DIST, dtype=float)
+dist = [[MAX_DIST] * 1000] * 1000
 
 
 def func():
@@ -31,9 +33,11 @@ def Data_Init():
 
 if __name__ == '__main__':
     #func()
-    dist = [[MAX_DIST] * 1000] * 1000
+    for i in range(1000):
+        print(dist[0][i])
     Data_Init()
     '''for each in lst_node:
         print(each.lst_link)'''
     for i in range(1000):
         print(dist[0][i])
+    ShortestPath.ShortestPath_Dijkstra(dist, 0, 100)
