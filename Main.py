@@ -1,5 +1,5 @@
 from Node import *
-import ShortestPath
+import Solve
 
 lst_node = []
 MAX_DIST = 100000
@@ -10,7 +10,7 @@ def Data_Init():
     f1 = open("city.txt", encoding="utf-8")
     for each in f1.readlines():
         tmp = each.split()
-        lst_node.append(node(float(tmp[1]),float(tmp[2])))
+        lst_node.append(node(float(tmp[1]), float(tmp[2])))
     f1.close()
     f2 = open("link.txt", encoding="utf-8")
     for each in f2.readlines():
@@ -24,7 +24,8 @@ def Data_Init():
         dis[a][b] = lst_node[a].Calc_Dist(lst_node[b])
         dis[b][a] = lst_node[a].Calc_Dist(lst_node[b])
 
+
 if __name__ == '__main__':
     Data_Init()
-    answer = ShortestPath.ShortestPath_Dijkstra(dis, 0, 345)
-    print(answer)
+    Solve_Dijkstra = Solve.ShortestPath_Dijkstra(0, 814, dis)
+    print(Solve_Dijkstra.GetResult())
