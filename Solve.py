@@ -6,6 +6,7 @@ class ShortestPath_Dijkstra:
         self.start = start
         self.destination = destination
         self.lst = lst
+        self.path = []
 
     def GetResult(self):
         dist = []
@@ -26,3 +27,62 @@ class ShortestPath_Dijkstra:
                 if self.lst[k][i] + min < dist[i]:
                     dist[i] = min + self.lst[k][i]
         return dist[self.destination]
+
+
+    def GetPath(self):
+        return self.path
+
+class AStar:
+    def __init__(self,start,destination,lst):
+        self.start = start
+        self.destination = destination
+        self.lst = lst
+
+    def GetResult(self):
+        pass
+
+    def GetPath(self):
+        pass
+
+class LocalSearch_ClimbMountain:
+    def __init__(self,start, destination,lst):
+        self.start = start
+        self.destination = destination
+        self.lst = lst
+        self.path = []
+
+    def GetResult(self):
+        pass
+
+    def GetPath(self):
+        return self.path
+
+
+class LocalSearch_GA:
+    def __init__(self, start, destination, lst):
+        self.start = start
+        self.destination = destination
+        self.lst = lst
+        self.path = []
+
+    def GetResult(self):
+        pass
+
+    def GetPath(self):
+        return self.path
+
+
+class LocalSearch_SA:
+    def __init__(self, start, destination, lst):
+        self.start = start
+        self.destination = destination
+        self.lst = lst
+        self.path = []
+
+    def GetResult(self):
+        pass
+
+    def GetPath(self):
+        return self.path
+
+
