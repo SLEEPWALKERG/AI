@@ -2,7 +2,7 @@ from Node import *
 import Solve
 
 lst_node = []
-MAX_DIST = 100000
+MAX_DIST = 10000000
 dis = [([MAX_DIST] * 1000) for i in range(1000)]
 
 
@@ -29,7 +29,24 @@ def Data_Init():
 
 
 if __name__ == '__main__':
+    start,end = map(int, input().split())
     Data_Init()
-    Solve_Dijkstra = Solve.ShortestPath_Dijkstra(0, 814, dis)
-    Solve.AStar(0,814,dis,lst_node).GetResult()
-    print(Solve_Dijkstra.GetResult())
+
+    #dijkstra
+    print("ShortestPath-Dijkstra:")
+    Solve_Dijkstra = Solve.ShortestPath_Dijkstra(start, end, dis)
+    result_dijkstra = Solve_Dijkstra.GetResult()
+    if result_dijkstra != MAX_DIST:
+        print("The Result is {}".format(result_dijkstra))
+        print("The Path is: {}".format(start), end='')
+        path_dijkstra = Solve_Dijkstra.GetPath()
+        if path_dijkstra is not None:
+            for each in Solve_Dijkstra.GetPath():
+                print(">>>", end='')
+                print(each)
+        print(">>>%d" % end)
+    else:
+        print("No Path")
+
+
+    #Solve.AStar(0,814,dis,lst_node).GetResult()

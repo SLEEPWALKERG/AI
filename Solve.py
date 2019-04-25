@@ -15,6 +15,7 @@ class ShortestPath_Dijkstra:
         isshortest = [0] * 1000
         min = MAX_DIST
         k = 0
+        tmpdict = {}
         for x in range(1000):
             for i in range(1000):
                 if isshortest[i] == 1:
@@ -26,6 +27,13 @@ class ShortestPath_Dijkstra:
             for i in range(1000):
                 if self.lst[k][i] + min < dist[i]:
                     dist[i] = min + self.lst[k][i]
+                    tmpdict[i] = k
+        tmplst = []
+        t = self.destination
+        while t in tmpdict:
+            tmplst.append(tmpdict[t])
+            t = tmpdict[t]
+        self.path = tmplst.reverse()
         return dist[self.destination]
 
 
@@ -53,7 +61,7 @@ class AStar:
                 break
             else:
                 for each in tmp.GetLink():
-                    #calculate the 耗散值
+                    #calculate the cost
                     haosanzhi = self.lst_dis[tmp][each.GetID()]+ self.lst_dis[tmp][self.destination]
                     if each in self.lst_open and haosanzhi < self.lst_open[self.lst_open.index(each)][1]:
                         self.lst_open[self.lst_open.index(each)][1] = haosanzhi
