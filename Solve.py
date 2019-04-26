@@ -1,5 +1,6 @@
 from Main import MAX_DIST
 import Node
+import time
 
 class ShortestPath_Dijkstra:
     def __init__(self,start, destination,lst):
@@ -9,14 +10,17 @@ class ShortestPath_Dijkstra:
         self.path = []
 
     def GetResult(self):
+        begin = time.time()
         dist = []
         for i in range(1000):
             dist.append(self.lst[self.start][i])
         isshortest = [0] * 1000
-        min = MAX_DIST
+        isshortest[self.start] = 1
+        isshortest[self.destination] = 1
         k = 0
         tmpdict = {}
         for x in range(1000):
+            min = MAX_DIST
             for i in range(1000):
                 if isshortest[i] == 1:
                     continue
@@ -28,12 +32,15 @@ class ShortestPath_Dijkstra:
                 if self.lst[k][i] + min < dist[i]:
                     dist[i] = min + self.lst[k][i]
                     tmpdict[i] = k
+        end = time.time()
+        print("The time it takes is: {}".format(end - begin))
         tmplst = []
         t = self.destination
         while t in tmpdict:
             tmplst.append(tmpdict[t])
             t = tmpdict[t]
-        self.path = tmplst.reverse()
+        tmplst.reverse()
+        self.path = tmplst
         return dist[self.destination]
 
 

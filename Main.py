@@ -29,12 +29,12 @@ def Data_Init():
 
 
 if __name__ == '__main__':
-    start,end = map(int, input().split())
+    start,destination = map(int, input().split())
     Data_Init()
 
     #dijkstra
     print("ShortestPath-Dijkstra:")
-    Solve_Dijkstra = Solve.ShortestPath_Dijkstra(start, end, dis)
+    Solve_Dijkstra = Solve.ShortestPath_Dijkstra(start, destination, dis)
     result_dijkstra = Solve_Dijkstra.GetResult()
     if result_dijkstra != MAX_DIST:
         print("The Result is {}".format(result_dijkstra))
@@ -42,11 +42,10 @@ if __name__ == '__main__':
         path_dijkstra = Solve_Dijkstra.GetPath()
         if path_dijkstra is not None:
             for each in Solve_Dijkstra.GetPath():
-                print(">>>", end='')
-                print(each)
-        print(">>>%d" % end)
+                print(">>>{}".format(each), end='')
+        print(">>>{}".format(destination))
     else:
         print("No Path")
 
-
+    #AStar
     #Solve.AStar(0,814,dis,lst_node).GetResult()
