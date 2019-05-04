@@ -20,15 +20,20 @@ def Data_Init():
         a = int(tmp[0])
         b = int(tmp[1])
         if a == b:
-            continue
-        lst_node[a].lst_link.append(b)
-        lst_node[b].lst_link.append(a)
-        dis[a][b] = lst_node[a].Calc_Dist(lst_node[b])
-        dis[b][a] = lst_node[a].Calc_Dist(lst_node[b])
+            dis[a][b] = 0
+        else:
+            dis[a][b] = lst_node[a].Calc_Dist(lst_node[b])
     f2.close()
+
+def output(lst):
+    print("The Path is: {}".format(lst[0]), end='')
+    for each in lst[1:]:
+        print(">>>{}".format(each), end='')
+    print()
 
 
 if __name__ == '__main__':
+    print("Please input the start node number and the end node number split by one space: ", end="")
     start,destination = map(int, input().split())
     Data_Init()
 
@@ -38,14 +43,17 @@ if __name__ == '__main__':
     result_dijkstra = Solve_Dijkstra.GetResult()
     if result_dijkstra != MAX_DIST:
         print("The Result is {}".format(result_dijkstra))
-        print("The Path is: {}".format(start), end='')
-        path_dijkstra = Solve_Dijkstra.GetPath()
-        if path_dijkstra is not None:
-            for each in Solve_Dijkstra.GetPath():
-                print(">>>{}".format(each), end='')
-        print(">>>{}".format(destination))
+        output(Solve_Dijkstra.GetPath())
     else:
         print("No Path")
 
     #AStar
-    #Solve.AStar(0,814,dis,lst_node).GetResult()
+    print("AStar:")
+    Solve_AStar = Solve.AStar(start,destination,dis)
+    result_astar = Solve_AStar.GetResult()
+    if result_astar != MAX_DIST:
+        print("The Result is {}".format(result_astar))
+        output(Solve_AStar.GetPath())
+    else:
+        print("No Path")
+
