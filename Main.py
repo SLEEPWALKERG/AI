@@ -49,8 +49,8 @@ if __name__ == '__main__':
 
     #AStar
     print("AStar:")
-    Solve_AStar = Solve.AStar(start,destination,dis)
-    result_astar = Solve_AStar.GetResult()
+    Solve_AStar = Solve.AStar(start,destination,dis,lst_node)
+    result_astar = Solve_AStar.GetResult
     if result_astar != MAX_DIST:
         print("The Result is {}".format(result_astar))
         output(Solve_AStar.GetPath())

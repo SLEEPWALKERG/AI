@@ -53,15 +53,17 @@ class ShortestPath_Dijkstra:
 
 
 class AStar:
-    def __init__(self, start, destination, lst_dis):
+    def __init__(self, start, destination, lst_dis, lst_node):
         self.start = start
         self.destination = destination
         self.lst_dis = lst_dis
+        self.lst_node = lst_node
         self.lst_open = []
         self.lst_closed = []
         self.path = []
 
     # the type of open table is [[node number, cost],[node number, cost]......]
+    @property
     def GetResult(self):
         begin = time.time()
         isFounded = MAX_DIST
@@ -86,7 +88,7 @@ class AStar:
                         tmpdis += self.lst_dis[dic[x]][x]
                         x = dic[x]
                     # tmpdis refers to the distance from the start node to the current node
-                    cost = tmpdis + self.lst_dis[i][self.destination]  # Calculate the cost
+                    cost = tmpdis + self.lst_node[i].Calc_Dist(self.lst_node[self.destination])  # Calculate the cost
                     if isopen[i] == 0:  # if the current node number isn't in the open table, add it
                         self.lst_open.append([i, cost])
                         isopen[i] = 1
