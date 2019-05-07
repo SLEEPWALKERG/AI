@@ -1,6 +1,7 @@
 from Main import MAX_DIST
 import Node
 import time
+import math
 
 
 class ShortestPath_Dijkstra:
@@ -151,14 +152,23 @@ class LocalSearch_GA:
 
 
 class LocalSearch_SA:
-    def __init__(self, start, destination, lst):
+    def __init__(self, start, destination, lst_dis, lst_node):
         self.start = start
         self.destination = destination
-        self.lst = lst
+        self.lst_dis = lst_dis
+        self.lst_node = lst_node
         self.path = []
 
     def GetResult(self):
-        pass
+        begin = time.time()
+        current_best = MAX_DIST
+        temprature = 100
+        temprature_min = 1
+        while temprature > temprature_min:
+            temprature *= 0.95
+        end = time.time()
+        print("The time SA takes is: {}".format(end - begin))
+        return current_best
 
     def GetPath(self):
         return self.path
